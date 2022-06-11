@@ -39,3 +39,37 @@
             return ResponseEntity.status(201).body(new API("Guest car is register ",201));
         }
 ##### Check if the guest have reservation.
+
+
+### Park Controller :- 
+
+    @GetMapping
+    public ResponseEntity<List<Park>> getParks(){
+        logger.info("Get parks");
+        return ResponseEntity.status(200).body(parkService.getParks());
+    }
+#####  Get all parks registered in database.
+
+     @PostMapping("/owner/add")
+    public ResponseEntity<API> ownerAddPark(@RequestBody @Valid Park park){
+        logger.info("Add park");
+        parkService.addPark(park);
+        return ResponseEntity.status(201).body(new API("Park ready to use",201));
+    }
+#####  Owner add new park.
+
+    @PutMapping("/update/{parkid}")
+    public ResponseEntity<API> update(@RequestBody @Valid Park park,@PathVariable Integer parkid){
+        logger.info("Update park");
+        parkService.update(park,parkid);
+        return ResponseEntity.status(201).body(new API("Park updated",201));
+    }
+##### Update a spicifice park by parkID.
+
+        @DeleteMapping("/delete/{parkid}")
+    public ResponseEntity<API> delete(@PathVariable Integer parkid){
+        logger.info("Delete park");
+        parkService.delete(parkid);
+        return ResponseEntity.status(201).body(new API("Park deleted",201));
+    }
+##### Delete a spicifice park by parkID.
