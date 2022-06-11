@@ -73,3 +73,56 @@
         return ResponseEntity.status(201).body(new API("Park deleted",201));
     }
 ##### Delete a spicifice park by parkID.
+
+
+### Payment Controller :- 
+
+    @GetMapping
+    public ResponseEntity<List<Payment>> getPayments(){
+        logger.info("Get payments");
+        return ResponseEntity.status(200).body(paymentService.getPayments());
+    }
+#####  Get all payments.
+
+     @PostMapping
+    public ResponseEntity<API> addPayment(@RequestBody @Valid Payment payment){
+        logger.info("Add payment");
+        paymentService.addPayment(payment);
+        return ResponseEntity.status(201).body(new API("Payment Added",201));
+    }
+#####  Add new payment.
+
+
+### Reservation Controller :- 
+
+    @GetMapping
+    public ResponseEntity<List<Reservation>> getReservations(){
+        logger.info("Get reservations");
+        return ResponseEntity.status(200).body(reservationService.getReservations());
+    }
+#####  Get all reservations.
+
+     @PostMapping
+    public ResponseEntity<API> addReservation(@RequestBody @Valid Reservation reservation){
+        logger.info("Add reservation");
+
+        reservationService.addReservation(reservation);
+        return ResponseEntity.status(201).body(new API("Reservation Added",201));
+    }
+#####  Add new reservation.
+
+    @PutMapping("/update/{reservationid}")
+        public ResponseEntity<API> update(@RequestBody @Valid Reservation reservation,@PathVariable Integer reservationid){
+            logger.info("Update reservations");
+            reservationService.update(reservation, reservationid);
+            return ResponseEntity.status(201).body(new API("Reservation updated",201));
+        }
+##### Update a spicifice reservation by reservationID.
+
+    @DeleteMapping("/delete/{reservationid}")
+        public ResponseEntity<API> delete(@PathVariable Integer reservationid){
+            logger.info("Delete reservations");
+            reservationService.delete(reservationid);
+            return ResponseEntity.status(201).body(new API("Reservation deleted",201));
+        }
+##### Delete a spicifice reservation by reservationID.
