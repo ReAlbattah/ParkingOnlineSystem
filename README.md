@@ -6,7 +6,6 @@
 -  User can reserve a parking.
 - Security can check parking validity by Plate Number.
 - Owner can manage his parkings.
-- The system avoids double reservations. 
 
 
 ## UML diagram : 
